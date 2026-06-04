@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+artifacts/figures/*
+artifacts/tables/*
+artifacts/workspace/*
+!artifacts/figures/.gitkeep
+!artifacts/tables/.gitkeep
+!artifacts/workspace/.gitkeep
+*.log
+*.tmp
+*.csv
+*.parquet
+*.pkl
+*.npy
+*.npz
