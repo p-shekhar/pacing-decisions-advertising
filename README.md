@@ -10,7 +10,7 @@
 
 Notebook-first code companion for **Decision-Calibrated Conformal Uncertainty for Pacing Decisions in Streaming Advertising**.
 
-Reusable code lives in `src/`; user-facing experiments live in `notebooks/`; generated outputs are written to `artifacts/` and ignored by git. The implementation follows the paper directly: it builds public-data-calibrated streaming marketplaces, creates historical state features from past inventory, demand, quality, seasonality, and lagged block totals, computes block-specific objective and constraint sensitivity directions from nominal catalog relaxations, forms the dual-weighted support-function score, calibrates value and constraint support radii with split conformal prediction and a Bonferroni component split, and applies the robust pacing selector. Each forecaster returns both the point forecast used by the optimizer and a calibrated max-coordinate prediction band for reproducibility diagnostics.
+Reusable code lives in `src/`; user-facing experiments live in `notebooks/`; generated outputs are written to `artifacts/` and ignored by git. The implementation follows the paper directly. It builds public-data-calibrated streaming marketplaces, creates historical state features from past inventory, demand, quality, seasonality, and lagged block totals, computes block-specific objective and constraint sensitivity directions from nominal catalog relaxations, forms the dual-weighted support-function score, calibrates value and constraint support radii with split conformal prediction and a Bonferroni component split, and applies the robust pacing selector. Each forecaster returns both the point forecast used by the optimizer and a calibrated max-coordinate prediction band for reproducibility diagnostics.
 
 ## Setup
 
@@ -19,7 +19,7 @@ uv sync
 uv run jupyter lab
 ```
 
-If `uv` is unavailable, the same environment can be created with standard Python tooling:
+If `uv` is unavailable, the same environment can be created with standard Python tooling.
 
 ```bash
 python3 -m venv .venv
@@ -29,7 +29,15 @@ python -m ipykernel install --user --name forecast-calibrated-causal-pacing
 jupyter lab
 ```
 
-The shared datasets should remain outside this code folder under the repository-level `data/` directory.
+## Data
+
+Keep all datasets in the local repository-level `data/` folder, not inside this code directory. In this workspace, use this path.
+
+```text
+/home/apex/Documents/ranking_sys/data/
+```
+
+When running from this `code/` directory, the implementation looks for data through the repository root and records dataset availability in `00_dataset_readiness.ipynb`. Large raw files, processed data, and generated outputs should stay local and should not be committed.
 
 PyTorch is a required dependency for the full workflow because every public-data-calibrated case fits the complete forecasting bundle, including `torch_gru` and `torch_transformer` sequence forecasters. Both models use GPU by default when CUDA is available, then Apple MPS if available, and otherwise fall back to CPU. For CUDA-specific wheels, follow the install command recommended by the PyTorch project for your machine before running `python -m pip install -e .`.
 
@@ -64,7 +72,7 @@ PyTorch is a required dependency for the full workflow because every public-data
 
 ## Outputs
 
-Running notebooks writes:
+Running notebooks writes the following generated outputs.
 
 - `artifacts/tables/*.csv`
 - `artifacts/figures/*.png`
