@@ -31,11 +31,7 @@ jupyter lab
 
 ## Data
 
-Keep all datasets in the local repository-level `data/` folder, not inside this code directory. In this workspace, use this path.
-
-```text
-/home/apex/Documents/ranking_sys/data/
-```
+Keep datasets in a local `data/` folder at the repository root. The code searches upward for `data/`, so it works both inside the larger workspace and in a standalone clone. The `data/` folder is ignored by git and should not be committed.
 
 When running from this `code/` directory, the implementation looks for data through the repository root and records dataset availability in `00_dataset_readiness.ipynb`. Large raw files, processed data, and generated outputs should stay local and should not be committed.
 
